@@ -13,3 +13,10 @@ function playRound(playerSelection, computerSelection) {
         }
         return 'you ${status}! paper beats rock'
 }
+else if ((playerSelection == "rock" && computerSelection =="scissors") || (playerSelection == "scissors" && computerSelection == rock")){
+    let status = "win"
+    if (playerSelection == "scissors" && computerSelection =="rock"){
+        status = "lose"
+    }    
+    return 'you ${status}! rock beats paper'
+}
