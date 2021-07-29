@@ -20,3 +20,17 @@ else if ((playerSelection == "rock" && computerSelection =="scissors") || (playe
     }    
     return 'you ${status}! rock beats paper'
 }
+else if ((playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper")){
+    let status = "win"
+    if (playerSelection == "paper" && computerSelection == "scissors"){
+        status = "lose"
+    }
+    return 'you ${status}! scissors beats rock
+}
+    else{
+        return "It's a tie!"    
+}
+}
+let playerScore = 0
+let computerScore = 0
+
