@@ -31,6 +31,51 @@ else if ((playerSelection == "paper" && computerSelection == "scissors") || (pla
         return "It's a tie!"    
 }
 }
+
 let playerScore = 0
 let computerScore = 0
+const spanComputer = document.querySelecter("span[id='computer-score']")
+const spanPlayer = document.querySelecter("span[id='player-score']")
+spanComputer.textContent = computerScore
+spanPlayer.textContent = playerScore
 
+function play(e) {
+    if (e.target.id != "rock" && e.target.id != "paper" && e.target.id !="scissors")return
+    let result = playRound(e.target.id, computerplay())
+    let node = document.createElement("div")
+ 
+    if (result.includes.("win")){
+        playerScore += 1 
+        spanPlayer.textContent = playerScore
+        node.classList.add('win')
+}
+    else if (result.includes("lose")){
+        computerScore =+ 1
+        spanComputer.textContent = computerScore
+        node.classList.add('lose')
+    }
+    else{
+        node.classList.add('tie')
+    }
+
+    let text = document.createTextNode(result)
+    node.appendChild(text)
+    document.querySelecter("div[id='messages']").prepend(node)
+
+    if(playerScore == 3 || computerScore == 3){
+        let congrats = (playerScore == 3 )? "you won!" : "computer won!"
+        setTimeout(() => {
+            alert('${congrats}')
+            if (playerScore == 3) {
+                confetti.start()
+                setTimeout(() => {confetti.stop()},1000)   
+            }
+            playerScore = 0
+            computerScore = 0
+            spanPlayer.textContent = playerScore
+            spanComputer.textContent = computerScore
+            document.querySelecter("div[id=messages']").innerHTML = ""
+         },1)
+    }  
+}
+window.addEventListener('click',play)    
